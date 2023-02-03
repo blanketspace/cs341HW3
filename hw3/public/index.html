@@ -95,53 +95,7 @@
 
         <h3 hidden id="three">
             <!-- MODIFICATION #1: FORM VALIDATION -->
-            <script>
-                function ordering() {
-                    var foo = document.getElementById('notes').value;
-                    var bar = $("#notes").val();
-
-
-                    if (bar.includes("vegan")) {
-                        document.getElementById("vegan").style.display = "block";
-                    }
-                    else {
-                        //hide the selection block
-                        document.getElementById("one").style.display = "none";
-
-                        //var to store # of cakes
-                        var sprock = document.getElementById("count").value;
-
-                        //find out which flavor has been selected
-                        var jom;
-                        if (document.getElementById("plain").checked) {
-                            jom = document.getElementById("plain").value;
-                        }
-                        else if (document.getElementById("cherry").checked) {
-                            jom = document.getElementById("cherry").value;
-                        }
-                        else if (document.getElementById("choc").checked) {
-                            jom = document.getElementById("choc").value;
-                        }
-
-                        //variables for stitching everything together
-                        var baz = document.createTextNode(sprock);
-                        var bones = document.createTextNode(" ");
-                        var blip = document.createTextNode(jom);
-                        var bob = document.createTextNode(" cheesecake(s).");
-
-                        //unhide textblock
-                        document.getElementById("two").style.display = "block";
-                        document.getElementById("two").classList.add('center');
-
-                        //add text nodes with user inputted data
-                        document.getElementById("nombre").appendChild(baz);
-                        document.getElementById("nombre").appendChild(bones);
-                        document.getElementById("nombre").appendChild(blip);
-                        document.getElementById("nombre").appendChild(bob);
-                    }
-
-                }
-            </script>
+            <script src="javascripts/order.js"></script>
     </div>
 
 
@@ -181,38 +135,9 @@
     </div>
 
 
-    <!-- again via https://www.w3schools.com/howto/howto_js_dropdown.asp -->
-
-    <script>
-        /* When the user clicks on the button, toggle between hiding and showing  the dropdown content 
-        */
-        function dropMen() {
-            document.getElementById("dropdown").classList.toggle("show");
-        }
-
-        // Close the dropdown menu if the user clicks outside of it
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-
-
-        //TODO: FINISH THIS
-        <!-- script for making the dropdown selection stick -->	
-        $(".month").click(function () {
-            var ian = $(this).attr('name');
-            document.getElementById("dropName").innerHTML = ian;
-        });
-
-    </script>
+    
+    <!-- script to handle actions/clicks on dropdown -->
+    <script src="javascripts/dropdown.js"></script>
 
 
     <!-- Past Orders Bulletpoint List -->
