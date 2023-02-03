@@ -1,0 +1,231 @@
+<!-- AM Blank, 1/28/23 -->
+<!-- HW #2 CSS, Javascript, JQuery-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- link to CSS: -->
+    <link rel="stylesheet" href="index.css">
+
+    <!-- jQuery library load -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
+    </script>
+</head>
+
+<body>
+
+    <h1>Cheesecake Order Form</h1>
+
+
+    <!-- image -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Cheesecake_mit_Beeren.jpg/240px-Cheesecake_mit_Beeren.jpg"
+        alt="cheesecake" class="center" />
+
+
+    <div class="purple">
+        <div id="one">
+            <!-- selection section -->
+
+            <table>
+
+                <!-- titles -->
+                <tr>
+                    <th>
+                        <h2>Quantity</h2>
+                    </th>
+                    <th>
+                        <h2>Topping</h2>
+                    </th>
+                </tr>
+
+                <tr>
+                    <!-- dropdown numbers -->
+                    <td>
+                        <select name="count" id="count">
+                            <option value="One">1</option>
+                            <option value="Two">2</option>
+                            <option value="Three">3</option>
+                            <option value="Four">4</option>
+                        </select>
+                    </td>
+
+                    <!-- bullet point choice -->
+                    <td>
+                        <table>
+                            <tr>
+                                <td><input type="radio" id="plain" name="flavor" value="plain"></td>
+                                <td><label for="plain">Plain</label></td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" id="cherry" name="flavor" value="cherry"></td>
+                                <td><label for="cherry">Cherry</label></td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" id="choc" name="flavor" value="chocolate"></td>
+                                <td><label for="chocolate">Chocolate</label></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Notes section -->
+            <label for="notes" class="center">Notes:</label>
+            <p></p>
+            <textarea id="notes" name="notes" rows="5" cols"50"
+                class="center">Enter any special instructions here</textarea>
+
+
+            <!-- break for spacing -->
+            <br></br>
+
+            <!-- hidden vegan alert -->
+            <p hidden id="vegan">Caution! Cheesecakes are, by nature, not vegan! Check your special instructions to make
+                sure this is what you want, then click 'order' again!</p>
+
+            <!-- order button -->
+            <input type="submit" value="Order" class="center" id="button" onclick="ordering()">
+        </div>
+
+        <h3 hidden id="two">Thank you! Your order has been placed:
+            <div id="nombre"></div>
+            <br></br>
+        </h3>
+
+        <h3 hidden id="three">
+            <!-- MODIFICATION #1: FORM VALIDATION -->
+            <script>
+                function ordering() {
+                    var foo = document.getElementById('notes').value;
+                    var bar = $("#notes").val();
+
+
+                    if (bar.includes("vegan")) {
+                        document.getElementById("vegan").style.display = "block";
+                    }
+                    else {
+                        //hide the selection block
+                        document.getElementById("one").style.display = "none";
+
+                        //var to store # of cakes
+                        var sprock = document.getElementById("count").value;
+
+                        //find out which flavor has been selected
+                        var jom;
+                        if (document.getElementById("plain").checked) {
+                            jom = document.getElementById("plain").value;
+                        }
+                        else if (document.getElementById("cherry").checked) {
+                            jom = document.getElementById("cherry").value;
+                        }
+                        else if (document.getElementById("choc").checked) {
+                            jom = document.getElementById("choc").value;
+                        }
+
+                        //variables for stitching everything together
+                        var baz = document.createTextNode(sprock);
+                        var bones = document.createTextNode(" ");
+                        var blip = document.createTextNode(jom);
+                        var bob = document.createTextNode(" cheesecake(s).");
+
+                        //unhide textblock
+                        document.getElementById("two").style.display = "block";
+                        document.getElementById("two").classList.add('center');
+
+                        //add text nodes with user inputted data
+                        document.getElementById("nombre").appendChild(baz);
+                        document.getElementById("nombre").appendChild(bones);
+                        document.getElementById("nombre").appendChild(blip);
+                        document.getElementById("nombre").appendChild(bob);
+                    }
+
+                }
+            </script>
+    </div>
+
+
+    <!-- another break for spacing -->
+    <br></br>
+
+
+    <!-- total orders -->
+    <h2>Total Orders
+
+        <!-- MODIFICATION #2: A HOVER DROPDOWN MENU -->
+        <!-- via https://www.w3schools.com/howto/howto_js_dropdown.asp -->
+        <div class="dropdown">
+            <button onclick="dropMen()" class="dropbtn" id="dropName">
+                <div>Jan</div>
+            </button>
+            <div id="dropdown" class="dropdown-content">
+                <div id="dropMenu" class="scrollMenu">
+
+                    <--! this modification to the w3 code is my own -->
+                        <--! frankenstiened from various stack overflow and api pages -->
+                            <a href="#" class="month" name="Jan">Jan</a>
+                            <a href="#" class="month" name="Feb">Feb</a>
+                            <a href="#" class="month" name="Mar">Mar</a>
+                            <a href="#" class="month" name="Apr">Apr</a>
+                            <a href="#" class="month" name="May">May</a>
+                            <a href="#" class="month" name="June">Juns</a>
+                            <a href="#" class="month" name="July">July</a>
+                            <a href="#" class="month" name="Aug">Aug</a>
+                            <a href="#" class="month" name="Sept">Sept</a>
+                            <a href="#" class="month" name="Oct">Oct</a>
+                            <a href="#" class="month" name="Nov">Nov</a>
+                            <a href="#" class="month" name="Dec">Dec</a>
+                </div>
+            </div>
+    </h2>
+    </div>
+
+
+    <!-- again via https://www.w3schools.com/howto/howto_js_dropdown.asp -->
+
+    <script>
+        /* When the user clicks on the button, toggle between hiding and showing  the dropdown content 
+        */
+        function dropMen() {
+            document.getElementById("dropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+
+        //TODO: FINISH THIS
+        <!-- script for making the dropdown selection stick -->	
+        $(".month").click(function () {
+            var ian = $(this).attr('name');
+            document.getElementById("dropName").innerHTML = ian;
+        });
+
+    </script>
+
+
+    <!-- Past Orders Bulletpoint List -->
+    <ul class="center">
+        <li>11 cherry</li>
+        <li>17 chocolate</li>
+        <li>31 plain</li>
+    </ul>
+    </div>
+
+    <!-- final spacing break -->
+        <br></br>
+
+</body>
+
+</html>
