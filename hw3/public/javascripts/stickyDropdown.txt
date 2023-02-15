@@ -1,0 +1,5 @@
+ <!-- script for making the dropdown selection stick -->	
+        $(".month").click(function () {
+            var ian = $(this).attr('name');
+            document.getElementById("dropName").innerHTML = ian;
+        });

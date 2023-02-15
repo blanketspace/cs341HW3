@@ -20,4 +20,9 @@ window.onclick = function (event) {
     }
 }
 
+//for changing the dropdown text
+$(".month").click(function () {
+    var ian = $(this).attr('name');
+    document.getElementById("dropName").innerHTML = ian;
+});
 
